@@ -8,7 +8,6 @@ const React = require("react"),
     LoginStore = require("./store"),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
-
 const LoginActions = Flux.createActions({
     login: function (userName,passWord) {
         return {
@@ -135,7 +134,7 @@ module.exports = React.createClass({
         }
     },
     login() {
-
+        console.log("Logging in...")
         this.refs.myLoginLabel.getDOMNode().innerHTML = 'Logging in...';
         timeoutArr.push(setTimeout(()=>{
             this.refs.myLoginLabel.getDOMNode().innerHTML = 'Be patient...';
