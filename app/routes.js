@@ -9,8 +9,9 @@ module.exports = (token) => {
 
   return [
     <Route name="root" path="/" handler={require('./handlers/Root')}>
-      <DefaultRoute handler={require('./components/Login')} />
+      <DefaultRoute handler={require('./components/Home')} />
       <Route name="login" handler={require('./components/Login')} />
+      <Route name="mcfly" handler={require('./components/Mcfly')} />
     </Route>,
     <Redirect from="/" to="login" />,
     <NotFoundRoute name="not-found" handler={require('./handlers/NotFound')}/>
