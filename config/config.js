@@ -65,6 +65,7 @@ module.exports = {
   // Merges into config if NODE_ENV is production
   production: {
     paths: paths,
+
     build: {
       vendor: {
         js: [

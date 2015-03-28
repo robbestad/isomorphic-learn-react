@@ -10,12 +10,12 @@ module.exports = function(config){
             .pipe(sass({
                 includePaths: config.vendor.scss || []
             }))
+            .pipe(autoprefixer())
+            .pipe(gulp.dest('./app/assets'))
             .on('error', function(err){
                 gutil.log('Error in sass build:');
                 gutil.log(err.stack);
-            })
-            .pipe(autoprefixer())
-            .pipe(gulp.dest('./app/assets'));
+            });
 
         if(config.cssmin)
             pipeline = pipeline.pipe(cssmin());

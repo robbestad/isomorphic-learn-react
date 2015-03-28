@@ -1,12 +1,12 @@
 'use strict';
 // Gulp plugins
 var gulp = require('gulp'),
-  gutil = require('gulp-util'),
+  	gutil = require('gulp-util'),
 
   // Load config file and moulder and detect environment
   moulder = require('./config/config-moulder'),
   environment = process.env.NODE_ENV || 'production',
-  config = require('./config/config');
+  config = require('./config/config.js');
 
 gutil.log('Detected environment: ', environment);
 

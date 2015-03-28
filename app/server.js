@@ -56,7 +56,7 @@ var app = http.createServer((req, res) => {
       return write(mainJS, 'text/javascript', res);
     case '/favicon.ico':
       return write('haha', 'text/plain', res);
-    case '/styles.css':
+    case '/app.css':
       return write(styles, 'text/css', res);
     default:
       renderApp(req, token, (error, html, token) => {
