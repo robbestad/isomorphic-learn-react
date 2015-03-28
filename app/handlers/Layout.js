@@ -76,7 +76,7 @@ var Root = module.exports = React.createClass({
       clearTimeout(timeout);
       this.setState({ longLoad: false });
     });
-     let _this=this;
+   /*  let _this=this;
         eventIds.push(Handler.addListener(window, 'touchmove', function() {
             _this.closeMenu();
         }, false));
@@ -84,7 +84,7 @@ var Root = module.exports = React.createClass({
         eventIds.push(Handler.addListener(window, 'scroll', function() {
             _this.closeMenu();
         }, false));
-
+*/
   },
 
     displayName:"Learn React",
