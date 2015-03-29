@@ -5,16 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Learn React (v2)</title>
-    <link type="text/css" rel="stylesheet" href="/app.css" />
+    <link type="text/css" rel="stylesheet" href="/main.css" />
 </head>
 <body>
 
 <div id="app">¡HTML!</div>
 
+<script>__DATA__ = ¡DATA!;</script>
+<script src="/js/main.js"></script>
 <script>
-__DATA__ = ¡DATA!;
+    function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
+    loadCSS('/site.css');
 </script>
 
-<script src="/js/main.js"></script>
 </body>
 </html>
