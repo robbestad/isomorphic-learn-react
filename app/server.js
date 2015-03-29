@@ -72,7 +72,7 @@ app.get('*', (req, res) => {
     case '/js/main.js':
       return write(mainJS, 'text/javascript', res);
     case '/favicon.ico':
-      return write('haha', 'text/plain', res);
+      return write('/assets/favicon.ico', 'text/plain', res);
     case '/main.css':
       return write(critical_css, 'text/css', res);
     case '/site.css':
