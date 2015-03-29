@@ -164,6 +164,14 @@ module.exports = React.createClass({
             this.refs.myLoginButton.getDOMNode().disabled = false;
     },
 
+    componentWillMount(){
+        let userName='marty';
+        let passWord='testpass';
+
+        if (LoginStore.isAuthenticated() === false)
+            LoginActions.login(userName,passWord);
+    },
+
     exposeToken() {
         this.refs.myToken.getDOMNode().innerHTML = this.getToken();
     },

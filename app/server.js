@@ -1,6 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 var React = require('react');
+var ReactAsync = require('react-async');
 var Router = require('react-router');
 var uuid = require('uuid');
 var cache = require('./utils/cache');
@@ -18,9 +19,9 @@ var bodyParser = require('body-parser');
 var compress = require('compression');
 var app = express();
 
-// Body-parsing middleware
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+//// Body-parsing middleware
+//app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.json());
 
 // compress
 app.use(compress());
@@ -48,6 +49,12 @@ var renderApp = (req, token, cb) => {
       cb({notFound: true}, html);
       return;
     }
+    if (state.routes[1].name === 'login') {
+      //var App = require(__dirname+'/components/Login');
+      ////var html = React.renderToString(require(__dirname+'/components/Login'));
+      //cb(null, __dirname+'/components/Login', false);
+      //return;
+    }
     fetchData(token, state).then((data) => {
       var clientHandoff = { token, data: cache.clean(token) };
       var html = React.renderToString(<Handler data={data} />);
@@ -69,8 +76,8 @@ app.get('*', (req, res) => {
   res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
 
   switch (req.url) {
-    case '/js/main.js':
-      return write(mainJS, 'text/javascript', res);
+    //case '/js/main.js':
+    //  return write(mainJS, 'text/javascript', res);
     case '/favicon.ico':
       return write('/assets/favicon.ico', 'text/plain', res);
     case '/main.css':
@@ -84,6 +91,8 @@ app.get('*', (req, res) => {
     case '/assets/fonts/bootstrap/glyphicons-halflings-regular.woff':
       return(res.sendFile(__dirname+req.url));
     case '/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf':
+      return(res.sendFile(__dirname+req.url));
+    case '/js/main.js':
       return(res.sendFile(__dirname+req.url));
     default:
       renderApp(req, token, (error, html, token) => {
@@ -104,8 +113,6 @@ app.get('*', (req, res) => {
 });
 
 app.use(express.static(__dirname + '/app/assets'));
-
-
 
 app.listen(process.env.PORT || 5000);
 

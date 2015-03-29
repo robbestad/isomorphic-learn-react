@@ -11,6 +11,12 @@ exports.McFlyRoute = Router.createRoute({
     name: '/mcfly',
     handler: require("./Mcfly")
 });
+
+exports.LoginRoute = Router.createRoute({
+    name: '/login',
+    handler: require("./Login")
+});
+
 /*
 exports.ReactFireRoute = Router.createRoute({
     name: '/reactfire',
@@ -32,10 +38,6 @@ exports.MarkdownRoute = Router.createRoute({
     handler: require("./markdown")
 });
 
-exports.LoginRoute = Router.createRoute({
-    name: '/login',
-    handler: require("./login")
-});
 
 exports.RefluxRoute = Router.createRoute({
     name: '/reflux',

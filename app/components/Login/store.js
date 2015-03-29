@@ -4,6 +4,7 @@ let Flux = new McFly();
 let Ajax = require("../mixins/ajax");
 let loggedIn = loggedIn || false;
 let lastError = lastError || false;
+import cookies from 'react-cookie';
 
 //const apiUrl="http://api-robbestad.dev";
 const apiUrl="https://morning-forest-9780.herokuapp.com";
@@ -18,8 +19,10 @@ function setLastError(lastErr) {
 
 var LoginStore = Flux.createStore({
     getRefreshToken: () => {
-        return 'undefined' !== typeof localStorage.getItem('auth.refresh_token') ?
-            (localStorage.getItem('auth.refresh_token')) : false;
+        //return 'undefined' !== typeof localStorage.getItem('auth.refresh_token') ?
+        //    (localStorage.getItem('auth.refresh_token')) : false;
+        return 'undefined' !== typeof cookies.load('auth.refresh_token') ?
+            (cookies.load('auth.refresh_token')) : false;
     },
     isAuthenticated: () => {
         return loggedIn;
@@ -55,9 +58,13 @@ var LoginStore = Flux.createStore({
                 if (res.token_type === "Bearer") {
                     setLoggedIn();
                     refresh_ok = true;
-                    localStorage.setItem('auth.access_token', res.access_token);
-                    localStorage.setItem('auth.expires_in', res.expires_in);
-                    localStorage.setItem('auth.refresh_token', res.refresh_token);
+                    cookies.save('auth.access_token', res.access_token);
+                    cookies.save('auth.expires_in', res.expires_in);
+                    cookies.save('auth.refresh_token', res.refresh_token);
+
+                    //localStorage.setItem('auth.access_token', res.access_token);
+                    //localStorage.setItem('auth.expires_in', res.expires_in);
+                    //localStorage.setItem('auth.refresh_token', res.refresh_token);
                 }
                 LoginStore.emitChange();
 
@@ -83,9 +90,13 @@ var LoginStore = Flux.createStore({
                 success: function (res) {
                     if (res.token_type === "Bearer") {
                         setLoggedIn();
-                        localStorage.setItem('auth.access_token', res.access_token);
-                        localStorage.setItem('auth.expires_in', res.expires_in);
-                        localStorage.setItem('auth.refresh_token', res.refresh_token);
+                        //localStorage.setItem('auth.access_token', res.access_token);
+                        //localStorage.setItem('auth.expires_in', res.expires_in);
+                        //localStorage.setItem('auth.refresh_token', res.refresh_token);
+                        cookies.save('auth.access_token', res.access_token);
+                        cookies.save('auth.expires_in', res.expires_in);
+                        cookies.save('auth.refresh_token', res.refresh_token);
+
                     }
                     LoginStore.emitChange();
 

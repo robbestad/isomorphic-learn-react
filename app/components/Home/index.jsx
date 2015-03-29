@@ -3,7 +3,7 @@
 const React = require("react"),
     { Grid, Col, Row} = require('react-bootstrap'),
     {Link} = require('react-router'),
-    {McFlyRoute} = require('../routes.jsx'),
+    {McFlyRoute, LoginRoute} = require('../routes.jsx'),
 /*    {ReactFireRoute, McFlyRoute, ButtonRoute, StaticsRoute, StickyRoute,
         LoginRoute, MarkdownRoute, RefluxRoute, FormsRoute,
         ChartsRoute, AnimationsRoute, BreadcrumbsRoute, ComponentRoute} = require('../routes.jsx'),
@@ -30,6 +30,8 @@ const React = require("react"),
 
         return <Grid className="flyin-widget">
             <Row className="show-grid" >
+
+
                 <Col md={12} className="columnBox">
                     <strong>Learn React</strong>
                 &nbsp; is a collection of React examples,
@@ -48,8 +50,30 @@ const React = require("react"),
 
 
             <Row>
-            
 
+                <Col xs={12} md={6} className="columnBox">
+
+                    <Link to={LoginRoute.name}>
+                        <strong>
+                            Login example
+                        </strong>
+                    </Link>
+                    <br/>
+                    Demonstrates a login component that passes credentials to a third party API and
+                    authenticates with Oauth2.
+                    <br/>
+
+                    <em>Current login status: {LoginStore.isAuthenticated().toString()}</em>
+
+                    <br/>
+                    <span className="label blue">Login</span>
+                    &nbsp;
+                    <span className="label blue">McFly</span>
+                    &nbsp;
+                    <span className="label blue">Oauth</span>
+
+
+                </Col>
 
                 <Col xs={12} md={6} className="columnBox">
                     <Link to={McFlyRoute.name}>
