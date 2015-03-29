@@ -78,7 +78,18 @@ app.get('*', (req, res) => {
       res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
       res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
       return(res.sendFile(__dirname+req.url));
-      //return write('assets/react_logo.png', 'img/png', res);
+    case '/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2':
+      res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
+      res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
+      return(res.sendFile(__dirname+req.url));
+    case '/assets/fonts/bootstrap/glyphicons-halflings-regular.woff':
+      res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
+      res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
+      return(res.sendFile(__dirname+req.url));
+    case '/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf':
+      res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
+      res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
+      return(res.sendFile(__dirname+req.url));
     default:
       renderApp(req, token, (error, html, token) => {
         if (!error) {
