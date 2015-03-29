@@ -181,51 +181,125 @@ var Root = module.exports = React.createClass({
         this.state.menuOpen === true ? this.closeMenu() : this.openMenu();
     },
 
-   /* renderContacts: function() {
-      return sortContacts(this.props.data.root.contacts).map((contact) => {
-        return (
-          <li className="ContactList__Contact" key={contact.id}>
-            <Link
-              className="ContactList__Link"
-              to="contact"
-              params={{id: contact.id}}
-            >
-              {contact.first} {contact.last}
-            </Link>
-          </li>
-        );
-      });
-    },
-*/
+
   render: function() {
     var className = 'App';
     if (this.state.longLoad)
       className += ' App--loading';
-    return (
-      <div className="Master">
-      {/*
-       <div className="TopBar">
-          Made by <a href={twitter}>Ryan Florence</a> with <a href={rr}>React Router</a>. View the <a href={source}>Source Code</a>.
-        </div>
-        <div className="Master">
-          <h2 className="Heading">Contacts</h2>
-          <div className="Content">
-            <ul className="ContactList">
-              <li className="ContactList__Contact" key="__newLink__">
-                <Link
-                  className="ContactList__Link ContactList__Link--new"
-                  to="newContact"
-                >New Contact</Link>
-              </li>
-              {this.renderContacts()}
-            </ul>
-          </div>
-        </div> */}
-
-        <TransitionGroup transitionName="detail">
-          <RouteHandler {...this.props} />
-        </TransitionGroup>
-      </div>
+if(true){
+  return (
+    <section>
+      <Headroom>
+          MEnu
+      </Headroom>
+          <TransitionGroup transitionName="detail">
+            <RouteHandler {...this.props} />
+          </TransitionGroup>
+    </section>
     );
+}
+/*if(false){
+return (<section>
+            <div className="page-header-wrap" key="35wxx">
+                <nav ref="mainMenu" className="main-menu header-panel">
+                    <ul >
+                        <li onClick={this.closeMenu}>
+                            <Link to="home">Home</Link>
+                        </li>
+
+                        <li onClick={this.closeMenu}>
+                            <Link to="source">Source</Link>
+                        </li>
+
+                        <li onClick={this.closeMenu}>
+                            <Link to="login">Login</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <span>
+                    <header className="page-header">
+                    <div id="header" className="header-bar">
+                        <div ref="feedbackModal" id="feedback-modal"></div>
+                        <div className="container">
+                            <div className="header-bar-wrap">
+                                <div className="header-options">
+                                    <div className="header-panel-wrap" onClick={this.toggleMenu}>
+                                        <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
+                                            <span
+                                                className="text-link">Meny</span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="logo-wrap logo">
+                                    <h2 className="header">Learn React</h2>
+                                </div>
+
+                                <div className="header-options main-options">
+
+
+                                    <div className="header-panel-wrap">
+                                        <span onClick={this.toggleSearch}
+                                            className="active-link search-link header-panel-element header-panel-link glyphicon glyphicon-search">
+                                            <span
+                                                className="text-link">Search</span>
+                                        </span>
+
+                                        <div ref="mainSearch" className="main-search header-panel">
+                                            <div className="container">
+                                                <div className="input-search-group">
+                                                    <form method="get" action="http://www.google.com/search" role="search">
+                                                        <input type="text" name="q"
+                                                            ref="searchInput"
+                                                            className="input-search form-control input-lg twitter-typeahead"
+                                                            placeholder="Search" id="searchfield" />
+                                                        <button className="btn btn-search glyphicon glyphicon-search"
+                                                            type="submit"></button>
+
+                                                        <input type="hidden" name="sitesearch" value="www.robbestad.com"/>
+                                                        <input hidden="true" type="submit" value="Google Search" />
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                </span>
+            </div>
+
+            <Hammer className="container main-container" onTap={this.handleTap}
+                onPress={this.handleTap} onSwipe={this.handleTap}>
+                      <TransitionGroup transitionName="detail">
+                  <RouteHandler {...this.props} />
+                </TransitionGroup>
+            </Hammer>
+
+            <div className="push">&nbsp;</div>
+
+            <div id="footer" className="footer">
+                <div className="container">
+                    <div className="logo-wrap">
+                        <h2 className="page-footer">Learn React</h2>
+                        <p>
+                            <Link to="/login">Login</Link> status: {LoginStore.isAuthenticated().toString()}
+                        </p>
+                    </div>
+                    <ul className="footer-links">
+                        <li>
+                            <a href="http://www.robbestad.com" className="copyright">&#169; 2015 Sven Anders Robbestad</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>)
+}*/
+
   }
 });

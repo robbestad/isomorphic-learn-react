@@ -19,3 +19,8 @@ module.exports = (token) => {
     <NotFoundRoute name="not-found" handler={require('./handlers/NotFound')}/>
   ];
 };
+/*
+      <Route name="contact" path="contact/:id" handler={require('./handlers/Contact')} />
+      <Route name="newContact" handler={require('./handlers/NewContact')} />
+      <Route name="createContact" handler={CreateContact} />
+*/
