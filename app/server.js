@@ -1,4 +1,4 @@
-var express = require('express');
+var http = require('http');
 var fs = require('fs');
 var React = require('react');
 var Router = require('react-router');
@@ -8,11 +8,15 @@ var getRoutes = require('./routes.js');
 var fetchData = require('./utils/fetchData');
 var indexHTML = fs.readFileSync(__dirname+'/index.html').toString();
 var mainJS = fs.readFileSync(__dirname+'/../public/js/main.js');
-var styles = fs.readFileSync(__dirname+'/assets/app.css');
+var critical_css = fs.readFileSync(__dirname+'/assets/main.css');
+var main_css = fs.readFileSync(__dirname+'/assets/site.css');
 var write = require('./utils/write');
 var Cookies = require('cookies');
-var compress = require('compression')();
-
+// gzip/deflate outgoing responses
+var compression = require('compression')
+var connect = require('connect')
+var app = connect()
+app.use(compression())
 
 var renderApp = (req, token, cb) => {
   var path = req.url;
@@ -48,7 +52,7 @@ var renderApp = (req, token, cb) => {
   });
 };
 
-var app = express((req, res) => {
+app = http.createServer((req, res) => {
   var cookies = new Cookies(req, res);
   var token = cookies.get('token') || uuid();
   cookies.set('token', token, { maxAge: 30*24*60*60 });
@@ -59,9 +63,9 @@ var app = express((req, res) => {
     case '/favicon.ico':
       return write('haha', 'text/plain', res);
     case '/main.css':
-      return write(styles, 'text/css', res);
+      return write(critical_css, 'text/css', res);
     case '/site.css':
-      return write(styles, 'text/css', res);
+      return write(main_css, 'text/css', res);
     default:
       renderApp(req, token, (error, html, token) => {
         if (!error) {
@@ -80,8 +84,5 @@ var app = express((req, res) => {
   }
 });
 
-// compress
-app.use(compress);
-
-app.listen(process.env.PORT || 8000);
+app.listen(process.env.PORT || 5000);
 
