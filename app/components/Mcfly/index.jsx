@@ -35,6 +35,7 @@ var ApiController = React.createClass({
         return getState();
     },
     storeDidChange: function () {
+        console.log('setting state');
         this.setState(getState());
     },
     render: function () {
