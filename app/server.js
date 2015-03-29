@@ -1,4 +1,4 @@
-var http = require('http');
+var express = require('express');
 var fs = require('fs');
 var React = require('react');
 var Router = require('react-router');
@@ -12,11 +12,18 @@ var critical_css = fs.readFileSync(__dirname+'/assets/main.css');
 var main_css = fs.readFileSync(__dirname+'/assets/site.css');
 var write = require('./utils/write');
 var Cookies = require('cookies');
+var bodyParser = require('body-parser');
+
 // gzip/deflate outgoing responses
-var compression = require('compression')
-var connect = require('connect')
-var app = connect()
-app.use(compression())
+var compress = require('compression');
+var app = express();
+
+// Body-parsing middleware
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+// compress
+app.use(compress());
 
 var renderApp = (req, token, cb) => {
   var path = req.url;
@@ -52,7 +59,8 @@ var renderApp = (req, token, cb) => {
   });
 };
 
-app = http.createServer((req, res) => {
+
+app.get('*', (req, res) => {
   var cookies = new Cookies(req, res);
   var token = cookies.get('token') || uuid();
   cookies.set('token', token, { maxAge: 30*24*60*60 });
@@ -83,6 +91,7 @@ app = http.createServer((req, res) => {
       });
   }
 });
+
 
 app.listen(process.env.PORT || 5000);
 
