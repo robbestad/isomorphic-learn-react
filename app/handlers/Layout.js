@@ -12,30 +12,32 @@ var Headroom = require("react-headroom"),
 
 if (typeof window !== 'undefined') {
     Hammer = require('react-hammerjs');
-    }
+}
 else {
     Hammer = React.createClass({
-        render(){
+        render() {
             return <div />
         }
     })
 }
 
-let Handler = (function(){
+let Handler = (function () {
     var i = 1,
         listeners = {};
 
     return {
-        addListener: function(element, event, handler, capture) {
+        addListener: function (element, event, handler, capture) {
             element.addEventListener(event, handler, capture);
-            listeners[i] = {element: element,
+            listeners[i] = {
+                element: element,
                 event: event,
                 handler: handler,
-                capture: capture};
+                capture: capture
+            };
             return i++;
         },
-        removeListener: function(id) {
-            if(id in listeners) {
+        removeListener: function (id) {
+            if (id in listeners) {
                 var h = listeners[id];
                 h.element.removeEventListener(h.event, h.handler, h.capture);
                 delete listeners[id];
@@ -44,76 +46,76 @@ let Handler = (function(){
     };
 }());
 
-let eventIds=[];
+let eventIds = [];
 
 
 var Root = module.exports = React.createClass({
-  mixins: [LoginStore.mixin],
+    mixins: [LoginStore.mixin],
 
-  statics: {
-    fetchData: (token, params, query) => {
-      return api.get('/contacts', token);
-    }
-  },
+    statics: {
+        fetchData: (token, params, query) => {
+            return api.get('/contacts', token);
+        }
+    },
 
-  getInitialState () {
-    return {  
-        longLoad: false,
-        searchOpen:false,
-        menuOpen:false
-     };
-  },
+    getInitialState() {
+        return {
+            longLoad: false,
+            searchOpen: false,
+            menuOpen: false
+        };
+    },
 
-  componentDidMount () {
-    var timeout;
-    this.props.loadingEvents.on('start', () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.setState({ longLoad: true });
-      }, 250);
-    });
-    this.props.loadingEvents.on('end', () => {
-      clearTimeout(timeout);
-      this.setState({ longLoad: false });
-    });
-   /*  let _this=this;
-        eventIds.push(Handler.addListener(window, 'touchmove', function() {
-            _this.closeMenu();
-        }, false));
+    componentDidMount() {
+        var timeout;
+        this.props.loadingEvents.on('start', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                this.setState({longLoad: true});
+            }, 250);
+        });
+        this.props.loadingEvents.on('end', () => {
+            clearTimeout(timeout);
+            this.setState({longLoad: false});
+        });
+        /*  let _this=this;
+         eventIds.push(Handler.addListener(window, 'touchmove', function() {
+         _this.closeMenu();
+         }, false));
 
-        eventIds.push(Handler.addListener(window, 'scroll', function() {
-            _this.closeMenu();
-        }, false));
-*/
-  },
+         eventIds.push(Handler.addListener(window, 'scroll', function() {
+         _this.closeMenu();
+         }, false));
+         */
+    },
 
-    displayName:"Learn React",
-    storeDidChange(){
+    displayName: "Learn React",
+    storeDidChange() {
         //console.log("store did change");
         this.setState(this.state);
     },
-    handleTap(){
+    handleTap() {
         this.closeMenu();
     },
 
     eventHandler(type) {
-        let _this=this;
-        return Handler.addListener(window, type, function() {
+        let _this = this;
+        return Handler.addListener(window, type, function () {
             _this.closeMenu();
         }, false);
     },
-    
-    componentWillUnmount(){
-        eventIds.map(function(eventId){
+
+    componentWillUnmount() {
+        eventIds.map(function (eventId) {
             Handler.removeListener(eventId);
         });
     },
 
-    fadeFlash(){
+    fadeFlash() {
         $("#feedback-modal").hide();
     },
     flash(body, toggleClass, delay) {
-        if("undefined" === typeof delay) delay=3400;
+        if ("undefined" === typeof delay) delay = 3400;
         var flashDiv = $(this.refs.feedbackModal.getDOMNode()), className;
         switch (toggleClass) {
             case "warning":
@@ -137,169 +139,190 @@ var Root = module.exports = React.createClass({
         })
     },
 
-    openMenu () {
+    openMenu() {
         this.closeSearch();
         var scrollPosition = [
             self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
-            self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+            self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         ];
         //console.log(scrollPosition);
-        this.refs.mainMenu.getDOMNode().style.top=(scrollPosition[1]+40);
+        this.refs.mainMenu.getDOMNode().style.top = (scrollPosition[1] + 40);
 
-        var _this=this;
+        var _this = this;
 
         $(this.refs.mainMenu.getDOMNode()).slideDown("fast", function () {
-            _this.setState({menuOpen:true});
+            _this.setState({menuOpen: true});
         });
     },
 
-    closeMenu(){
-        var _this=this;
-        _this.setState({menuOpen:false});
-        $(this.refs.mainMenu.getDOMNode()).css("display","none");
+    closeMenu() {
+        var _this = this;
+        _this.setState({menuOpen: false});
+        $(this.refs.mainMenu.getDOMNode()).css("display", "none");
     },
     closeSearch() {
-        var _this=this;
+        var _this = this;
         $(this.refs.mainSearch.getDOMNode()).slideUp("fast", function () {
-            _this.setState({searchOpen:false});
+            _this.setState({searchOpen: false});
         })
     },
     openSearch() {
         this.closeMenu();
 
-        var _this=this;
+        var _this = this;
         $(this.refs.mainSearch.getDOMNode()).slideDown("fast", function () {
             _this.refs.searchInput.getDOMNode().focus();
-            _this.setState({searchOpen:true});
+            _this.setState({searchOpen: true});
         });
 
     },
-    toggleSearch(){
+    toggleSearch() {
         this.state.searchOpen === true ? this.closeSearch() : this.openSearch();
     },
-    toggleMenu(){
+    toggleMenu() {
         this.state.menuOpen === true ? this.closeMenu() : this.openMenu();
     },
 
 
-  render: function() {
-    var className = 'App';
-    if (this.state.longLoad)
-      className += ' App--loading';
-if(true){
-  return (
-    <section>
-      <Headroom>
-          MEnu
-      </Headroom>
-          <TransitionGroup transitionName="detail">
-            <RouteHandler {...this.props} />
-          </TransitionGroup>
-    </section>
-    );
-}
-/*if(false){
-return (<section>
-            <div className="page-header-wrap" key="35wxx">
-                <nav ref="mainMenu" className="main-menu header-panel">
-                    <ul >
-                        <li onClick={this.closeMenu}>
-                            <Link to="home">Home</Link>
-                        </li>
+    render: function () {
+        var className = 'App';
+        if (this.state.longLoad)
+            className += ' App--loading';
+        return (
+            <section>
+                <Headroom>
+                    MEnu
+                </Headroom>
 
-                        <li onClick={this.closeMenu}>
-                            <Link to="source">Source</Link>
-                        </li>
-
-                        <li onClick={this.closeMenu}>
-                            <Link to="login">Login</Link>
-                        </li>
-                    </ul>
-                </nav>
-                <span>
-                    <header className="page-header">
-                    <div id="header" className="header-bar">
-                        <div ref="feedbackModal" id="feedback-modal"></div>
-                        <div className="container">
-                            <div className="header-bar-wrap">
-                                <div className="header-options">
-                                    <div className="header-panel-wrap" onClick={this.toggleMenu}>
-                                        <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
-                                            <span
-                                                className="text-link">Meny</span>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="logo-wrap logo">
-                                    <h2 className="header">Learn React</h2>
-                                </div>
-
-                                <div className="header-options main-options">
-
-
-                                    <div className="header-panel-wrap">
-                                        <span onClick={this.toggleSearch}
-                                            className="active-link search-link header-panel-element header-panel-link glyphicon glyphicon-search">
-                                            <span
-                                                className="text-link">Search</span>
-                                        </span>
-
-                                        <div ref="mainSearch" className="main-search header-panel">
-                                            <div className="container">
-                                                <div className="input-search-group">
-                                                    <form method="get" action="http://www.google.com/search" role="search">
-                                                        <input type="text" name="q"
-                                                            ref="searchInput"
-                                                            className="input-search form-control input-lg twitter-typeahead"
-                                                            placeholder="Search" id="searchfield" />
-                                                        <button className="btn btn-search glyphicon glyphicon-search"
-                                                            type="submit"></button>
-
-                                                        <input type="hidden" name="sitesearch" value="www.robbestad.com"/>
-                                                        <input hidden="true" type="submit" value="Google Search" />
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </header>
-                </span>
-            </div>
-
-            <Hammer className="container main-container" onTap={this.handleTap}
-                onPress={this.handleTap} onSwipe={this.handleTap}>
-                      <TransitionGroup transitionName="detail">
-                  <RouteHandler {...this.props} />
+                <TransitionGroup transitionName="detail" className="container main-container">
+                    <RouteHandler {...this.props} />
                 </TransitionGroup>
-            </Hammer>
 
-            <div className="push">&nbsp;</div>
+                
+                <div className="push">&nbsp;</div>
 
-            <div id="footer" className="footer">
-                <div className="container">
-                    <div className="logo-wrap">
-                        <h2 className="page-footer">Learn React</h2>
-                        <p>
-                            <Link to="/login">Login</Link> status: {LoginStore.isAuthenticated().toString()}
-                        </p>
+                <div id="footer" className="footer">
+                    <div className="container">
+                        <div className="logo-wrap">
+                            <h2 className="page-footer">Learn React</h2>
+
+                            <p>
+                                <Link to="/login">Login</Link> status: {LoginStore.isAuthenticated().toString()}
+                            </p>
+                        </div>
+                        <ul className="footer-links">
+                            <li>
+                                <a href="http://www.robbestad.com" className="copyright">&#169; 2015 Sven Anders
+                                    Robbestad</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul className="footer-links">
-                        <li>
-                            <a href="http://www.robbestad.com" className="copyright">&#169; 2015 Sven Anders Robbestad</a>
-                        </li>
-                    </ul>
                 </div>
-            </div>
+            </section>
+        );
 
-        </section>)
-}*/
+        /*if(false){
+         return (<section>
+         <div className="page-header-wrap" key="35wxx">
+         <nav ref="mainMenu" className="main-menu header-panel">
+         <ul >
+         <li onClick={this.closeMenu}>
+         <Link to="home">Home</Link>
+         </li>
 
-  }
+         <li onClick={this.closeMenu}>
+         <Link to="source">Source</Link>
+         </li>
+
+         <li onClick={this.closeMenu}>
+         <Link to="login">Login</Link>
+         </li>
+         </ul>
+         </nav>
+         <span>
+         <header className="page-header">
+         <div id="header" className="header-bar">
+         <div ref="feedbackModal" id="feedback-modal"></div>
+         <div className="container">
+         <div className="header-bar-wrap">
+         <div className="header-options">
+         <div className="header-panel-wrap" onClick={this.toggleMenu}>
+         <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
+         <span
+         className="text-link">Meny</span>
+         </span>
+         </div>
+         </div>
+
+         <div className="logo-wrap logo">
+         <h2 className="header">Learn React</h2>
+         </div>
+
+         <div className="header-options main-options">
+
+
+         <div className="header-panel-wrap">
+         <span onClick={this.toggleSearch}
+         className="active-link search-link header-panel-element header-panel-link glyphicon glyphicon-search">
+         <span
+         className="text-link">Search</span>
+         </span>
+
+         <div ref="mainSearch" className="main-search header-panel">
+         <div className="container">
+         <div className="input-search-group">
+         <form method="get" action="http://www.google.com/search" role="search">
+         <input type="text" name="q"
+         ref="searchInput"
+         className="input-search form-control input-lg twitter-typeahead"
+         placeholder="Search" id="searchfield" />
+         <button className="btn btn-search glyphicon glyphicon-search"
+         type="submit"></button>
+
+         <input type="hidden" name="sitesearch" value="www.robbestad.com"/>
+         <input hidden="true" type="submit" value="Google Search" />
+         </form>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+
+
+         </div>
+         </div>
+         </div>
+         </header>
+         </span>
+         </div>
+
+         <Hammer className="container main-container" onTap={this.handleTap}
+         onPress={this.handleTap} onSwipe={this.handleTap}>
+         <TransitionGroup transitionName="detail">
+         <RouteHandler {...this.props} />
+         </TransitionGroup>
+         </Hammer>
+
+         <div className="push">&nbsp;</div>
+
+         <div id="footer" className="footer">
+         <div className="container">
+         <div className="logo-wrap">
+         <h2 className="page-footer">Learn React</h2>
+         <p>
+         <Link to="/login">Login</Link> status: {LoginStore.isAuthenticated().toString()}
+         </p>
+         </div>
+         <ul className="footer-links">
+         <li>
+         <a href="http://www.robbestad.com" className="copyright">&#169; 2015 Sven Anders Robbestad</a>
+         </li>
+         </ul>
+         </div>
+         </div>
+
+         </section>)
+         }*/
+
+    }
 });
