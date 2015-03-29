@@ -65,6 +65,9 @@ app.get('*', (req, res) => {
   var token = cookies.get('token') || uuid();
   cookies.set('token', token, { maxAge: 30*24*60*60 });
 
+  res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
+  res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
+
   switch (req.url) {
     case '/js/main.js':
       return write(mainJS, 'text/javascript', res);
@@ -75,20 +78,12 @@ app.get('*', (req, res) => {
     case '/site.css':
       return write(main_css, 'text/css', res);
     case '/assets/react_logo.png':
-      res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
-      res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
       return(res.sendFile(__dirname+req.url));
     case '/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2':
-      res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
-      res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
       return(res.sendFile(__dirname+req.url));
     case '/assets/fonts/bootstrap/glyphicons-halflings-regular.woff':
-      res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
-      res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
       return(res.sendFile(__dirname+req.url));
     case '/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf':
-      res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
-      res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
       return(res.sendFile(__dirname+req.url));
     default:
       renderApp(req, token, (error, html, token) => {
