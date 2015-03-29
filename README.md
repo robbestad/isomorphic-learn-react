@@ -1,8 +1,7 @@
-React Router Mega Demo
+Learn React
 ======================
 
-Eventually this will be a mega demo, but right now its just a playground
-for server-side rendering with react-router.
+A playground for server-side rendering with react, react-router and flux.
 
 After cloning the repo, do this so check it out:
 

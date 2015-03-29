@@ -8,7 +8,7 @@ var getRoutes = require('./routes.js');
 var fetchData = require('./utils/fetchData');
 var indexHTML = fs.readFileSync(__dirname+'/index.html').toString();
 var mainJS = fs.readFileSync(__dirname+'/../public/js/main.js');
-var styles = fs.readFileSync(__dirname+'/assets/styles.css');
+var styles = fs.readFileSync(__dirname+'/assets/app.css');
 var write = require('./utils/write');
 var Cookies = require('cookies');
 
