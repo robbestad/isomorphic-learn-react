@@ -1,7 +1,6 @@
 .flyin-widget{
   animation: flyin 0.25s ease forwards;
-  opacity: 0;
-//  height:0;
+  opacity: 1;
   transform: scale(1.5);
   filter: blur(25px);
 }
@@ -9,7 +8,6 @@
 @keyframes flyin {
   to {
     filter: blur(0);
-//    height:auto;
     transform: scale(1);
     opacity: 1;
   }

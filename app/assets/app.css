@@ -4853,7 +4853,7 @@ button.close {
 .flyin-widget {
   -webkit-animation: flyin 0.25s ease forwards;
           animation: flyin 0.25s ease forwards;
-  opacity: 0;
+  opacity: 1;
   -webkit-transform: scale(1.5);
       -ms-transform: scale(1.5);
           transform: scale(1.5);
