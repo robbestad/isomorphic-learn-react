@@ -11,6 +11,8 @@ var mainJS = fs.readFileSync(__dirname+'/../public/js/main.js');
 var styles = fs.readFileSync(__dirname+'/assets/app.css');
 var write = require('./utils/write');
 var Cookies = require('cookies');
+var compress = require('compression')();
+
 
 var renderApp = (req, token, cb) => {
   var path = req.url;
@@ -78,5 +80,8 @@ var app = http.createServer((req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 5000);
+// compress
+app.use(compress);
+
+app.listen(process.env.PORT || 8000);
 
