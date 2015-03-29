@@ -18,8 +18,8 @@ module.exports = function (config) {
             src: '../index.html',
             styleTarget: 'assets/app.css',
             dest: 'main.css',
-            width: 320,
-            height: 480,
+            width: 640,
+            height: 860,
             minify: true
         }, function (err, output) {
             console.log(err);

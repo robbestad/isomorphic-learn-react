@@ -74,6 +74,11 @@ app.get('*', (req, res) => {
       return write(critical_css, 'text/css', res);
     case '/site.css':
       return write(main_css, 'text/css', res);
+    case '/assets/react_logo.png':
+      res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
+      res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
+      return(res.sendFile(__dirname+req.url));
+      //return write('assets/react_logo.png', 'img/png', res);
     default:
       renderApp(req, token, (error, html, token) => {
         if (!error) {
@@ -91,6 +96,9 @@ app.get('*', (req, res) => {
       });
   }
 });
+
+app.use(express.static(__dirname + '/app/assets'));
+
 
 
 app.listen(process.env.PORT || 5000);

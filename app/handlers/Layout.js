@@ -190,9 +190,81 @@ var Root = module.exports = React.createClass({
             className += ' App--loading';
         return (
             <section>
-                <Headroom>
-                    MEnu
-                </Headroom>
+                <div className="page-header-wrap">
+                    <nav ref="mainMenu" className="main-menu header-panel">
+                        <ul >
+                            <li onClick={this.closeMenu}>
+                                <Link to="home">Home</Link>
+                            </li>
+
+                            <li onClick={this.closeMenu}>
+                                <Link to="source">Source</Link>
+                            </li>
+
+                            <li onClick={this.closeMenu}>
+                                <Link to="login">Login</Link>
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                    <Headroom>
+                        <header className="page-header">
+                            <div id="header" className="header-bar">
+                                <div ref="feedbackModal" id="feedback-modal"></div>
+                                <div className="container">
+                                    <div className="header-bar-wrap">
+                                        <div className="header-options">
+                                            <div className="header-panel-wrap" onClick={this.toggleMenu}>
+                                        <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
+                                            <span
+                                                className="text-link">Meny</span>
+                                        </span>
+                                            </div>
+                                        </div>
+
+                                        <div className="logo-wrap logo">
+                                            <h2 className="header">Learn React</h2>
+                                        </div>
+
+                                        <div className="header-options main-options">
+
+
+                                            <div className="header-panel-wrap">
+                                        <span onClick={this.toggleSearch}
+                                              className="active-link search-link header-panel-element header-panel-link glyphicon glyphicon-search">
+                                            <span
+                                                className="text-link">Search</span>
+                                        </span>
+
+                                                <div ref="mainSearch" className="main-search header-panel">
+                                                    <div className="container">
+                                                        <div className="input-search-group">
+                                                            <form method="get" action="http://www.google.com/search" role="search">
+                                                                <input type="text" name="q"
+                                                                       ref="searchInput"
+                                                                       className="input-search form-control input-lg twitter-typeahead"
+                                                                       placeholder="Search" id="searchfield" />
+                                                                <button className="btn btn-search glyphicon glyphicon-search"
+                                                                        type="submit"></button>
+
+                                                                <input type="hidden" name="sitesearch" value="www.robbestad.com"/>
+                                                                <input hidden="true" type="submit" value="Google Search" />
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                    </Headroom>
+                </div>
+
 
                 <TransitionGroup transitionName="detail" className="container main-container">
                     <RouteHandler {...this.props} />
