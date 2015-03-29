@@ -7,12 +7,12 @@ module.exports = function(config){
   return function(){
     return gulp
       .src(
-        ['./public/dist/app.css'],
-        {base:'./public/dist/'}
+        ['./app/assets/app.css'],
+        {base:'./app/assets/'}
       )
       .pipe($.rename({
           basename: "site" // site.css
       }))
-      .pipe(gulp.dest('./public/dist'));
+      .pipe(gulp.dest('./app/assets'));
   };
 };
