@@ -1,4 +1,4 @@
-var http = require('http');
+var express = require('express');
 var fs = require('fs');
 var React = require('react');
 var Router = require('react-router');
@@ -48,7 +48,7 @@ var renderApp = (req, token, cb) => {
   });
 };
 
-var app = http.createServer((req, res) => {
+var app = express((req, res) => {
   var cookies = new Cookies(req, res);
   var token = cookies.get('token') || uuid();
   cookies.set('token', token, { maxAge: 30*24*60*60 });
