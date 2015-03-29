@@ -12,10 +12,18 @@
 <div id="app" >¡HTML!</div>
 
 <script>__DATA__ = ¡DATA!;</script>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" async></script>
+
 <script>
-    function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
-    loadCSS('/site.css');
+    var cb = function() {
+        var l = document.createElement('link'); l.rel = 'stylesheet';
+        l.href = 'site.css';
+        var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+    };
+    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+    if (raf) raf(cb);
+    else window.addEventListener('load', cb);
 </script>
 
 </body>
