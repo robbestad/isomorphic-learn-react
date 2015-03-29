@@ -198,7 +198,7 @@ var Root = module.exports = React.createClass({
                     <RouteHandler {...this.props} />
                 </TransitionGroup>
 
-                
+
                 <div className="push">&nbsp;</div>
 
                 <div id="footer" className="footer">
