@@ -195,6 +195,9 @@ module.exports = React.createClass({
                         <Button ref="myLoginButton" bsStyle="success" bsSize="small" className="button" onClick={this.login}>
                             Login
                         </Button>
+
+                    <a onClick={this.login}>Login</a>
+
                         <p style={inlineCss}><span ref="myLoginLabel" />
                             <LoggedIn {...this.state} />
                         </p>
