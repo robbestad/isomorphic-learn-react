@@ -100,6 +100,8 @@ app.get('*', (req, res) => {
       return(res.sendFile(__dirname+req.url));
     case '/js/main.js':
       return(res.sendFile(__dirname+req.url));
+    case '/js/performance-now.map':
+      return(res.sendFile(__dirname+req.url));
     default:
       renderApp(req, token, (error, html, token) => {
         if (!error) {

@@ -122,17 +122,20 @@ var Root = module.exports = React.createClass({
 
     openMenu() {
         this.closeSearch();
+        this.refs.mainMenu.getDOMNode().style.position="fixed";
+
         var scrollPosition = [
             self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
             self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         ];
-        //console.log(scrollPosition);
-        this.refs.mainMenu.getDOMNode().style.top = (scrollPosition[1] + 40);
+        //this.refs.mainMenu.getDOMNode().style.top = (scrollPosition[1] + 40);
+        this.refs.mainMenu.getDOMNode().style.top = (scrollPosition[1]);
 
         var _this = this;
 
         $(this.refs.mainMenu.getDOMNode()).slideDown("fast", function () {
             _this.setState({menuOpen: true});
+            //_this.refs.mainMenu.getDOMNode().style.position="absolute";
         });
     },
 
@@ -142,23 +145,23 @@ var Root = module.exports = React.createClass({
         $(this.refs.mainMenu.getDOMNode()).css("display", "none");
     },
     closeSearch() {
-        var _this = this;
-        $(this.refs.mainSearch.getDOMNode()).slideUp("fast", function () {
-            _this.setState({searchOpen: false});
-        })
+        //var _this = this;
+        //$(this.refs.mainSearch.getDOMNode()).slideUp("fast", function () {
+        //    _this.setState({searchOpen: false});
+        //})
     },
     openSearch() {
-        this.closeMenu();
-
-        var _this = this;
-        $(this.refs.mainSearch.getDOMNode()).slideDown("fast", function () {
-            _this.refs.searchInput.getDOMNode().focus();
-            _this.setState({searchOpen: true});
-        });
+        //this.closeMenu();
+        //
+        //var _this = this;
+        //$(this.refs.mainSearch.getDOMNode()).slideDown("fast", function () {
+        //    _this.refs.searchInput.getDOMNode().focus();
+        //    _this.setState({searchOpen: true});
+        //});
 
     },
     toggleSearch() {
-        this.state.searchOpen === true ? this.closeSearch() : this.openSearch();
+        //this.state.searchOpen === true ? this.closeSearch() : this.openSearch();
     },
     toggleMenu() {
         this.state.menuOpen === true ? this.closeMenu() : this.openMenu();
@@ -169,6 +172,7 @@ var Root = module.exports = React.createClass({
         var className = 'App';
         if (this.state.longLoad)
             className += ' App--loading';
+
         return (
             <section>
                 <div className="page-header-wrap">
@@ -197,7 +201,6 @@ var Root = module.exports = React.createClass({
                                     <div className="header-bar-wrap">
                                         <div className="header-options">
                                             <div className="header-panel-wrap"
-                                                 style={{zIndex:999}}
                                                  onClick={this.toggleMenu}>
                                         <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
                                             <span
@@ -219,7 +222,7 @@ var Root = module.exports = React.createClass({
                                             <span
                                                 className="text-link">Search</span>
                                         </span>
-
+                                                {/*
                                                 <div ref="mainSearch" className="main-search header-panel">
                                                     <div className="container">
                                                         <div className="input-search-group">
@@ -237,6 +240,7 @@ var Root = module.exports = React.createClass({
                                                         </div>
                                                     </div>
                                                 </div>
+                                                */}
                                             </div>
                                         </div>
 
@@ -249,7 +253,6 @@ var Root = module.exports = React.createClass({
                 </div>
 
                 <TransitionGroup transitionName="detail"
-                                 onTouchStart={this.closeMenu}
                                  className="container main-container">
                     <RouteHandler {...this.props} />
                 </TransitionGroup>

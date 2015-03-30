@@ -76,7 +76,7 @@ var ApiComponent = React.createClass({
                 //if (item.thumbnail.match('http')) thumbnail = true;
                 var permalink = "http://www.reddit.com/" + item.permalink;
 
-                return <Col key={"mcfly"+idx} md={12} className="appear-in">
+                return <Col key={"mcfly"+idx} md={12}>
                     <span style={{fontSize: '12px', color: '#aaa'}} >{item.subreddit}</span>
                     <br/>
                     <span style={{fontSize: '18px'}} >{item.title}</span>
