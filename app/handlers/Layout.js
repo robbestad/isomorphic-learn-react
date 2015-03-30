@@ -2,26 +2,11 @@ var React = require('react');
 var { Link, RouteHandler } = require('react-router');
 var TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
 //var api = require('../utils/api');
-var twitter = "http://twitter.com/ryanflorence";
-var rr = "https://github.com/rackt/react-router";
-var source = "https://github.com/rackt/react-router-mega-demo";
 var Headroom = require("react-headroom"),
-    Hammer,
     $ = require('jquery'),
     LoginStore = require("../components/Login/store");
 
 React.initializeTouchEvents(true);
-
-if (typeof window !== 'undefined') {
-    Hammer = require('react-hammerjs');
-}
-else {
-    Hammer = React.createClass({
-        render() {
-            return <div />
-        }
-    })
-}
 
 let Handler = (function () {
     var i = 1,
@@ -211,15 +196,14 @@ var Root = module.exports = React.createClass({
                                 <div className="container" >
                                     <div className="header-bar-wrap">
                                         <div className="header-options">
-                                            <Hammer className="header-panel-wrap"
-                                                onTap={this.toggleMenu}
+                                            <div className="header-panel-wrap"
                                                  onClick={this.toggleMenu}
                                                  onTouchEnd={this.toggleMenu}>
                                         <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
                                             <span
                                                 className="text-link">Meny</span>
                                         </span>
-                                            </Hammer>
+                                            </div>
                                         </div>
 
                                         <div className="logo-wrap logo">
