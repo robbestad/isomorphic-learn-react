@@ -181,6 +181,7 @@ module.exports = React.createClass({
         return <Grid className="flyin-widget">
             <Row className="show-grid">
                 <Col md={12}>
+                    <div className="columnBox">
                     <Breadcrumbs />
                         <p>
                             <b>Username:</b><br/>
@@ -198,7 +199,7 @@ module.exports = React.createClass({
                             <LoggedIn {...this.state} />
                         </p>
                     <Instructions />
-
+                    </div>
                 </Col>
             </Row>
         </Grid>
