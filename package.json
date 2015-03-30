@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "script/run"
+    "start": "script/run",
+    "styles": "sassc app/sass/main.scss --style compressed | ./node_modules/.bin/autoprefixer -b \"> 1%, IE 8\" > app/assets/main.css"
   },
   "license": "MIT",
   "dependencies": {

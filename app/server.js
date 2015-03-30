@@ -8,6 +8,7 @@ var cache = require('./utils/cache');
 var getRoutes = require('./routes.js');
 var fetchData = require('./utils/fetchData');
 var indexHTML = fs.readFileSync(__dirname+'/index.html').toString();
+var mainCSS = fs.readFileSync(__dirname+'/assets/main.css').toString();
 var write = require('./utils/write');
 var Cookies = require('cookies');
 var bodyParser = require('body-parser');
@@ -35,6 +36,7 @@ var renderApp = (req, token, cb) => {
   var path = req.url;
   var htmlRegex = /¡HTML!/;
   var dataRegex = /¡DATA!/;
+  var cssRegex = /¡CSS!/;
 
   var router = Router.create({
     routes: getRoutes(token),
@@ -60,6 +62,7 @@ var renderApp = (req, token, cb) => {
     html = React.renderToString(<Handler data={data} />);
     var output = indexHTML.
         replace(htmlRegex, html).
+        replace(cssRegex, mainCSS).
         replace(dataRegex, JSON.stringify(clientHandoff));
     cb(null, output, token);
     //

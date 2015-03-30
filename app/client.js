@@ -5,6 +5,8 @@ var fetchData = require('./utils/fetchData');
 var rehydrate = require('./utils/rehydrate');
 var { EventEmitter } = require('events');
 
+React.initializeTouchEvents(true);
+
 var loadingEvents = new EventEmitter();
 var token = rehydrate();
 
