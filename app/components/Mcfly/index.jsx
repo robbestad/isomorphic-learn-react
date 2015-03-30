@@ -58,19 +58,19 @@ var ApiComponent = React.createClass({
     },
     render: function () {
         return <Grid className="flyin-widget">
-            <Row className="show-grid">
+            <Row className="show-grid columnBox">
                 <Col md={12}>
                     <Breadcrumbs />
                 </Col>
             </Row>
-            <Row className="show-grid">
+            <Row className="show-grid columnBox">
                 <Col md={12}>
                     This component uses McFly to populate a datastore with a JSON resource using AJAX.
                     When you go back to the home screen, note that the counter is kept in sync
                     with whatever is downloaded here.
                 </Col>
             </Row>
-            <Row className="show-grid ">
+            <Row className="show-grid columnBox">
             {this.props.posts.map(function (item, idx) {
                 //var thumbnail = false;
                 //if (item.thumbnail.match('http')) thumbnail = true;

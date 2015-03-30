@@ -3,7 +3,7 @@
 const React = require("react"),
     { Grid, Col, Row} = require('react-bootstrap'),
     {Link} = require('react-router'),
-    {McFlyRoute, LoginRoute} = require('../routes.jsx'),
+    {McFlyRoute, LoginRoute, ArticlesRoute} = require('../routes.jsx'),
 /*    {ReactFireRoute, McFlyRoute, ButtonRoute, StaticsRoute, StickyRoute,
         LoginRoute, MarkdownRoute, RefluxRoute, FormsRoute,
         ChartsRoute, AnimationsRoute, BreadcrumbsRoute, ComponentRoute} = require('../routes.jsx'),
@@ -99,6 +99,25 @@ const React = require("react"),
                 &nbsp;
                     <span className="label blue">JSON</span>
                 </p>
+
+                </Col>
+
+
+
+                <Col xs={12} md={6} className="columnBox">
+                    <p className="columnBox">
+                        <Link to={ArticlesRoute.name}>
+                            <strong>
+                                Articles
+                            </strong>
+                        </Link>
+                        <br/>
+                        This component utilizes breadcrumbs in a big way
+                        <br/>
+
+                        <span className="label blue">breadcrumbs</span>
+                        &nbsp;
+                    </p>
 
                 </Col>
             </Row>

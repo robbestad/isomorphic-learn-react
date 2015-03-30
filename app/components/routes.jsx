@@ -17,6 +17,11 @@ exports.LoginRoute = Router.createRoute({
     handler: require("./Login")
 });
 
+exports.ArticlesRoute = Router.createRoute({
+    name: '/articles',
+    handler: require("./Articles")
+});
+
 /*
 exports.ReactFireRoute = Router.createRoute({
     name: '/reactfire',

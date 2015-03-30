@@ -49,14 +49,15 @@ var renderApp = (req, token, cb) => {
   });
 
   router.run((Handler, state) => {
+    var html;
     if (state.routes[0].name === 'not-found') {
-      var html = React.renderToStaticMarkup(<Handler/>);
+      html = React.renderToStaticMarkup(<Handler/>);
       cb({notFound: true}, html);
       return;
     }
     var token='', data={};
     var clientHandoff = { token, data: '' };
-    var html = React.renderToString(<Handler data={data} />);
+    html = React.renderToString(<Handler data={data} />);
     var output = indexHTML.
         replace(htmlRegex, html).
         replace(dataRegex, JSON.stringify(clientHandoff));
@@ -81,7 +82,7 @@ app.get('*', (req, res) => {
   cookies.set('token', token, { maxAge: 30*24*60*60 });
 
   res.setHeader("Cache-Control", "public, max-age=2419200"); // 2419200 14 days
-  res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
+  res.setHeader("Expires", new Date(Date.now() + 2419200).toUTCString()); // 345600000
 
   switch (req.url) {
     case '/favicon.ico':
