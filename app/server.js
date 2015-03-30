@@ -15,10 +15,14 @@ var write = require('./utils/write');
 var Cookies = require('cookies');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
+//var Cacher = require("cacher")
+// use the default in memory cache
+//var cacher = new Cacher();
 
 // gzip/deflate outgoing responses
 var compression = require('compression');
 var app = express();
+//app.use(cacher.cache('days', 30));
 
 app.use(compression());
 
@@ -79,8 +83,8 @@ app.get('*', (req, res) => {
   var token = cookies.get('token') || uuid();
   cookies.set('token', token, { maxAge: 30*24*60*60 });
 
-  res.setHeader("Cache-Control", "public, max-age=172800"); // 2419200 14 days
-  res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
+  res.setHeader("Cache-Control", "public, max-age=2419200"); // 2419200 14 days
+  res.setHeader("Expires", new Date(Date.now() + 2419200).toUTCString()); // 345600000
 
   switch (req.url) {
     //case '/js/main.js':
