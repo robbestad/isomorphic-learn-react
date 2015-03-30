@@ -170,7 +170,7 @@ module.exports = React.createClass({
                 <nav ref="mainMenu" className="main-menu header-panel">
                     <ul >
                         <li onClick={this.closeMenu}>
-                            <Link to="home">Home</Link>
+                            <Link to="/">Home</Link>
                         </li>
 
                         <li onClick={this.closeMenu}>

@@ -132,25 +132,16 @@ module.exports = React.createClass({
         for (var item of timeoutArr) {
             clearTimeout(item);
         }
+        this.refs.myLoginLabel.getDOMNode().innerHTML ="";
     },
     login() {
-        console.log("Logging in...")
         this.refs.myLoginLabel.getDOMNode().innerHTML = 'Logging in...';
         timeoutArr.push(setTimeout(()=>{
             this.refs.myLoginLabel.getDOMNode().innerHTML = 'Be patient...';
-        },2e3));
-        timeoutArr.push(setTimeout(()=>{
-            this.refs.myLoginLabel.getDOMNode().innerHTML = 'Results are coming...';
-        },4e3));
-        timeoutArr.push(setTimeout(()=>{
-            this.refs.myLoginLabel.getDOMNode().innerHTML = 'My, this is taking a long time isn\'t it?';
         },6e3));
         timeoutArr.push(setTimeout(()=>{
-            this.refs.myLoginLabel.getDOMNode().innerHTML = 'Are you sure you\'re still connected to the net?';
-        },8e3));
-        timeoutArr.push(setTimeout(()=>{
-            this.refs.myLoginLabel.getDOMNode().innerHTML = 'I\'m trying one last time...';
-        },1e4));
+            this.refs.myLoginLabel.getDOMNode().innerHTML = 'Results are coming...';
+        },10e3));
         this.refs.myLoginButton.getDOMNode().disabled = true;
         let userName=this.refs.userName.getDOMNode().value;
         let passWord=this.refs.passWord.getDOMNode().value;
@@ -164,13 +155,13 @@ module.exports = React.createClass({
             this.refs.myLoginButton.getDOMNode().disabled = false;
     },
 
-    componentWillMount(){
-        let userName='marty';
-        let passWord='testpass';
-
-        if (LoginStore.isAuthenticated() === false)
-            LoginActions.login(userName,passWord);
-    },
+    //componentWillMount(){
+    //    let userName='marty';
+    //    let passWord='testpass';
+    //
+    //    if (LoginStore.isAuthenticated() === false)
+    //        LoginActions.login(userName,passWord);
+    //},
 
     exposeToken() {
         this.refs.myToken.getDOMNode().innerHTML = this.getToken();
@@ -200,11 +191,8 @@ module.exports = React.createClass({
                             <input ref="passWord" type="text" defaultValue="testpass" />
                         </p>
 
-                        <Button ref="myLoginButton" bsStyle="success" bsSize="small" className="button" onClick={this.login}>
-                            Login
-                        </Button>
+                        <input value="Login" type="submit" ref="myLoginButton" bsStyle="success" bsSize="small" className="button" onClick={this.login} />
 
-                    <a onClick={this.login}>Login</a>
 
                         <p style={inlineCss}><span ref="myLoginLabel" />
                             <LoggedIn {...this.state} />
