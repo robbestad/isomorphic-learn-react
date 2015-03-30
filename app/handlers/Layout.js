@@ -208,7 +208,7 @@ var Root = module.exports = React.createClass({
                         <header className="page-header">
                             <div id="header" className="header-bar">
                                 <div ref="feedbackModal" id="feedback-modal"></div>
-                                <div className="container">
+                                <Hammer className="container" onTap={this.toggleMenu}>
                                     <div className="header-bar-wrap">
                                         <div className="header-options">
                                             <div className="header-panel-wrap"
@@ -257,7 +257,7 @@ var Root = module.exports = React.createClass({
 
 
                                     </div>
-                                </div>
+                                </Hammer>
                             </div>
                         </header>
                     </Headroom>
