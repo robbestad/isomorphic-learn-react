@@ -175,15 +175,15 @@ var Root = module.exports = React.createClass({
                     <nav ref="mainMenu" className="main-menu header-panel">
                         <ul >
                             <li onClick={this.closeMenu}>
-                                <Link to="home">Home</Link>
+                                <Link to="/home">Home</Link>
                             </li>
 
                             <li onClick={this.closeMenu}>
-                                <Link to="source">Source</Link>
+                                <Link to="/source">Source</Link>
                             </li>
 
                             <li onClick={this.closeMenu}>
-                                <Link to="login">Login</Link>
+                                <Link to="/login">Login</Link>
                             </li>
 
 
@@ -197,7 +197,7 @@ var Root = module.exports = React.createClass({
                                     <div className="header-bar-wrap">
                                         <div className="header-options">
                                             <div className="header-panel-wrap"
-                                                 onClick={this.toggleMenu}
+                                                 style={{zIndex:999}}
                                                  onTouchEnd={this.toggleMenu}>
                                         <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
                                             <span

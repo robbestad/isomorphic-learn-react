@@ -37,7 +37,7 @@ const Instructions = React.createClass({
     mixins: [PureRenderMixin],
     displayName:"Instructions",
     render() {
-            return <div>
+            return <div className="columnBox">
                     <h3>Instructions</h3>
                 <p>
                     Handling login in a pure JavaScript app (also called a
