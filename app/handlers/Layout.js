@@ -10,6 +10,8 @@ var Headroom = require("react-headroom"),
     $ = require('jquery'),
     LoginStore = require("../components/Login/store");
 
+React.initializeTouchEvents(true);
+
 if (typeof window !== 'undefined') {
     Hammer = require('react-hammerjs');
 }
@@ -209,7 +211,9 @@ var Root = module.exports = React.createClass({
                                 <div className="container">
                                     <div className="header-bar-wrap">
                                         <div className="header-options">
-                                            <div className="header-panel-wrap" onClick={this.toggleMenu}>
+                                            <div className="header-panel-wrap"
+                                                 onClick={this.toggleMenu}
+                                                 onTouchEnd={this.toggleMenu}>
                                         <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
                                             <span
                                                 className="text-link">Meny</span>
