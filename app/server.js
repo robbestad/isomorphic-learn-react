@@ -24,7 +24,7 @@ var compression = require('compression');
 var app = express();
 //app.use(cacher.cache('days', 30));
 
-app.use(compression());
+app.use(compression({level:9}));
 
 var oneYear = 31557600000;
 app.use(express.static(__dirname + '/assets', { maxAge: oneYear }));
@@ -60,12 +60,6 @@ var renderApp = (req, token, cb) => {
       cb({notFound: true}, html);
       return;
     }
-    if (state.routes[1].name === 'login') {
-      //var App = require(__dirname+'/components/Login');
-      ////var html = React.renderToString(require(__dirname+'/components/Login'));
-      //cb(null, __dirname+'/components/Login', false);
-      //return;
-    }
     fetchData(token, state).then((data) => {
       var clientHandoff = { token, data: cache.clean(token) };
       var html = React.renderToString(<Handler data={data} />);
@@ -84,17 +78,11 @@ app.get('*', (req, res) => {
   cookies.set('token', token, { maxAge: 30*24*60*60 });
 
   res.setHeader("Cache-Control", "public, max-age=2419200"); // 2419200 14 days
-  res.setHeader("Expires", new Date(Date.now() + 2419200).toUTCString()); // 345600000
+  res.setHeader("Expires", new Date(Date.now() + 172800).toUTCString()); // 345600000
 
   switch (req.url) {
-    //case '/js/main.js':
-    //  return write(mainJS, 'text/javascript', res);
     case '/favicon.ico':
       return write('/assets/favicon.ico', 'text/plain', res);
-   /* case '/main.css':
-      return write(critical_css, 'text/css', res);
-    case '/site.css':
-      return write(main_css, 'text/css', res);*/
     case '/assets/react_logo.png':
       return(res.sendFile(__dirname+req.url));
     case '/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2':
