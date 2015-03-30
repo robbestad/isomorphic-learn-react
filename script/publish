@@ -1,9 +1,10 @@
 #!/bin/sh
+BIN=./node_modules/.bin
 npm run styles
-NODE_ENV=production node_modules/.bin/webpack -p
-node_modules/.bin/uglifyjs app/js/main.js  --mangle --compress warnings=false > app/js/min.js
+NODE_ENV=production $BIN/webpack -p
+$BIN/uglifyjs app/js/main.js  --mangle --compress warnings=false > app/js/min.js
 mv app/js/min.js app/js/main.js
 ls -lhs app/js
-git commit -am"New version"
+git commit -am "`npm view . version`" --allow-empty
+npm version patch
 git push heroku master
-

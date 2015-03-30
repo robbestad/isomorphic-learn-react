@@ -1,3 +1,4 @@
-#!/bin/sh
-node_modules/.bin/karma start "$@"
+#!/bin/bash
+karma=./node_modules/.bin/karma
+$karma start "$@"
 
