@@ -3,50 +3,12 @@
 var React = require('react'),
     {RouteHandler, Link} = require('react-router'),
     Headroom = require("react-headroom"),
-    Hammer,
+    Hammer = require('react-hammerjs'),
     $ = require('jquery'),
     LoginStore = require("../Login/store");
-/*
-if (typeof window !== 'undefined') {
-    Hammer = require('react-hammerjs');
-    }
-else {
-    Hammer = React.createClass({
-        render(){
-            return <div />
-        }
-    })
-}
-*/
-Hammer = React.createClass({
-        render(){
-            return <div />
-        }
-    })
-/*
-let Handler = (function(){
-    var i = 1,
-        listeners = {};
 
-    return {
-        addListener: function(element, event, handler, capture) {
-            element.addEventListener(event, handler, capture);
-            listeners[i] = {element: element,
-                event: event,
-                handler: handler,
-                capture: capture};
-            return i++;
-        },
-        removeListener: function(id) {
-            if(id in listeners) {
-                var h = listeners[id];
-                h.element.removeEventListener(h.event, h.handler, h.capture);
-                delete listeners[id];
-            }
-        }
-    };
-}());
-*/
+React.initializeTouchEvents(true);
+
 let eventIds=[];
 
 module.exports = React.createClass({
