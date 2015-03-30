@@ -17,14 +17,16 @@ var bodyParser = require('body-parser');
 
 // gzip/deflate outgoing responses
 var compression = require('compression');
-//var gzippo = require('gzippo');
 var app = express();//.use(gzippo.compress());
-//app.use(gzippo.staticGzip(__dirname + '/app'));
 
 //// Body-parsing middleware
-//app.use(bodyParser.urlencoded({extended: true}));
-//app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(compression());
+
+var oneYear = 31557600000;
+app.use(express.static(__dirname + '/assets', { maxAge: oneYear }));
+
 
 var renderApp = (req, token, cb) => {
   var path = req.url;
@@ -111,8 +113,6 @@ app.get('*', (req, res) => {
       });
   }
 });
-
-app.use(express.static(__dirname + '/app/assets'));
 
 app.listen(process.env.PORT || 5000);
 
