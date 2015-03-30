@@ -2,6 +2,6 @@
 #mkdir -p public/js
 NODE_ENV=production node_modules/.bin/webpack -p
 node_modules/.bin/uglifyjs app/js/main.js  --mangle --compress warnings=false > app/js/min.js
-mv public/js/min.js public/js/main.js
+mv app/js/min.js app/js/main.js
 node app.js
 
