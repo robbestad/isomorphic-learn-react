@@ -16,15 +16,15 @@ var Cookies = require('cookies');
 var bodyParser = require('body-parser');
 
 // gzip/deflate outgoing responses
-var compress = require('compression');
-var app = express();
+var compression = require('compression');
+//var gzippo = require('gzippo');
+var app = express();//.use(gzippo.compress());
+//app.use(gzippo.staticGzip(__dirname + '/app'));
 
 //// Body-parsing middleware
 //app.use(bodyParser.urlencoded({extended: true}));
 //app.use(bodyParser.json());
-
-// compress
-app.use(compress());
+app.use(compression());
 
 var renderApp = (req, token, cb) => {
   var path = req.url;
