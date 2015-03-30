@@ -15,9 +15,9 @@ module.exports = function (config) {
 
         return critical.generate({
             base: 'app/assets',
-            src: '../index.html',
+            src: '../index_b.html',
             styleTarget: 'assets/app.css',
-            dest: 'main.css',
+            dest: 'app.css',
             width: 640,
             height: 860,
             minify: true

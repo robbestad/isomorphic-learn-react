@@ -9,7 +9,7 @@ var getRoutes = require('./routes.js');
 var fetchData = require('./utils/fetchData');
 var indexHTML = fs.readFileSync(__dirname+'/index.html').toString();
 var mainJS = fs.readFileSync(__dirname+'/../public/js/main.js');
-var critical_css = fs.readFileSync(__dirname+'/assets/main.css');
+//var critical_css = fs.readFileSync(__dirname+'/assets/main.css');
 var main_css = fs.readFileSync(__dirname+'/assets/site.css');
 var write = require('./utils/write');
 var Cookies = require('cookies');
@@ -80,8 +80,8 @@ app.get('*', (req, res) => {
     //  return write(mainJS, 'text/javascript', res);
     case '/favicon.ico':
       return write('/assets/favicon.ico', 'text/plain', res);
-    case '/main.css':
-      return write(critical_css, 'text/css', res);
+   /* case '/main.css':
+      return write(critical_css, 'text/css', res);*/
     case '/site.css':
       return write(main_css, 'text/css', res);
     case '/assets/react_logo.png':
