@@ -12,7 +12,7 @@ import {Link, RouteHandler} from 'react-router';
 //}
 //let b1 = new Base1(1);
 
-//console.log(b1);-
+//console.log(b1);
 
 class ArticleItem extends React.Component {
     constructor(props, context) {
@@ -31,6 +31,7 @@ class ArticleItem extends React.Component {
             return <RouteHandler />;
         }
         return <Grid className="flyin-widget">
+            <div className="columnBox">
             <Row className="show-grid">
                 <Col md={12}>
                     <Breadcrumbs breadcrumbName={"Article "+this.context.router.getCurrentParams().id} />
@@ -44,6 +45,7 @@ class ArticleItem extends React.Component {
 
                 </Col>
             </Row>
+            </div>
         </Grid>;
     }
 }

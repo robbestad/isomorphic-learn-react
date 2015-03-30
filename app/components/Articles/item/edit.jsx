@@ -8,7 +8,7 @@ import {Link, RouteHandler} from 'react-router';
 
 class ArticleItemEdit extends React.Component {
 
-    componentDidMount(){
+    componentDidMount() {
         //console.table(this.context.router.getCurrentRoutes());
         //console.table(this.context.router.getCurrentParams());
         //        <Route name="/articles/article/:id/edit" handler={require('./articles/item/edit')} />
@@ -17,19 +17,22 @@ class ArticleItemEdit extends React.Component {
 
     render() {
         return <Grid className="flyin-widget">
-            <Row className="show-grid">
-                <Col md={12}>
-                    <Breadcrumbs breadcrumbName={"Editing "+this.context.router.getCurrentParams().id} />
-                </Col>
-            </Row>
-            <Row className="show-grid">
-                <Col md={12}>
-                    Editing article {this.context.router.getCurrentParams().id}
-                    <br/>
-                    <Link to="/articles/article/1">Back to {this.context.router.getCurrentParams().id}</Link>
+            <div className="columnBox">
+                <Row className="show-grid">
+                    <Col md={12}>
+                        <Breadcrumbs breadcrumbName={"Editing "+this.context.router.getCurrentParams().id}/>
+                    </Col>
+                </Row>
+                <Row className="show-grid">
+                    <Col md={12}>
+                        Editing article {this.context.router.getCurrentParams().id}
+                        <br/>
+                        <Link to="/articles/article/1">Back to {this.context.router.getCurrentParams().id}</Link>
 
-                </Col>
-            </Row>
+                    </Col>
+                </Row>
+            </div>
+
         </Grid>;
     }
 }
@@ -43,4 +46,4 @@ ArticleItemEdit.propTypes = {
     router: React.PropTypes.func
 };
 
-    export default ArticleItemEdit;
+export default ArticleItemEdit;

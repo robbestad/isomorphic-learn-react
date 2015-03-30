@@ -198,7 +198,7 @@ var Root = module.exports = React.createClass({
                                         <div className="header-options">
                                             <div className="header-panel-wrap"
                                                  style={{zIndex:999}}
-                                                 onTouchEnd={this.toggleMenu}>
+                                                 onClick={this.toggleMenu}>
                                         <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
                                             <span
                                                 className="text-link">Meny</span>
@@ -248,8 +248,9 @@ var Root = module.exports = React.createClass({
                     </Headroom>
                 </div>
 
-
-                <TransitionGroup transitionName="detail" className="container main-container">
+                <TransitionGroup transitionName="detail"
+                                 onTouchStart={this.closeMenu}
+                                 className="container main-container">
                     <RouteHandler {...this.props} />
                 </TransitionGroup>
 

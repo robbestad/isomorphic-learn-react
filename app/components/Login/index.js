@@ -194,7 +194,6 @@ module.exports = React.createClass({
 
                         <input value="Login" type="submit" ref="myLoginButton" bsStyle="success" bsSize="small" className="button" onClick={this.login} />
 
-
                         <p style={inlineCss}><span ref="myLoginLabel" />
                             <LoggedIn {...this.state} />
                         </p>

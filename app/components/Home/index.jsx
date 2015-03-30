@@ -24,7 +24,7 @@ const React = require("react"),
         'modules and tutorials for Reactjs');console.log('Additional examples ' +
         'are being added every now and then, so be sure to ' +
         'bookmark and come again!');
-        console.log('%chttp://learnreact.robbestad.com','background: #999;');
+        //console.log('%chttp://learnreact.robbestad.com','background: #999;');
     },
     render() {
 
@@ -39,8 +39,7 @@ const React = require("react"),
                     modules and tutorials. More will be coming
                     every now and then, so be sure to bookmark and come back or star/fork it
                     on&nbsp;
-                    <a href="https://github.com/svenanders/learn-react">github</a>
-                    .
+                    <a href="https://github.com/svenanders/learn-react">github</a>.
                     </p>
                 </Col>
             </Row>
@@ -117,6 +116,7 @@ const React = require("react"),
 
                         <span className="label blue">breadcrumbs</span>
                         &nbsp;
+                        <span className="label blue">JSON</span>
                     </p>
 
                 </Col>
