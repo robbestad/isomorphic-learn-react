@@ -81,9 +81,9 @@ app.get('*', (req, res) => {
     case '/favicon.ico':
       return write('/assets/favicon.ico', 'text/plain', res);
    /* case '/main.css':
-      return write(critical_css, 'text/css', res);*/
+      return write(critical_css, 'text/css', res);
     case '/site.css':
-      return write(main_css, 'text/css', res);
+      return write(main_css, 'text/css', res);*/
     case '/assets/react_logo.png':
       return(res.sendFile(__dirname+req.url));
     case '/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2':
