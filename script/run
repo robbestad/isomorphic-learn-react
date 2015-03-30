@@ -1,7 +1,8 @@
 #!/bin/sh
-#mkdir -p public/js
-#NODE_ENV=production node_modules/.bin/webpack -p
-#node_modules/.bin/uglifyjs app/js/main.js  --mangle --compress warnings=false > app/js/min.js
-#mv app/js/min.js app/js/main.js
+BIN=./node_modules/.bin
+npm run styles
+NODE_ENV=production $BIN/webpack -p
+$BIN/uglifyjs app/js/main.js  --mangle --compress warnings=false > app/js/min.js
+mv app/js/min.js app/js/main.js
 node app.js
 
