@@ -5,6 +5,7 @@ NODE_ENV=production $BIN/webpack -p
 $BIN/uglifyjs app/js/main.js  --mangle --compress warnings=false > app/js/min.js
 mv app/js/min.js app/js/main.js
 ls -lhs app/js
-git commit -am "`npm view . version`" --allow-empty
-npm version patch
+git commit -am"new release" --allow-empty
+version=npm version patch
+git commit -am "$version" --allow-empty
 git push heroku master
