@@ -150,10 +150,10 @@ module.exports = React.createClass({
                     <header className="page-header">
                     <div id="header" className="header-bar">
                         <div ref="feedbackModal" id="feedback-modal"></div>
-                        <div className="container">
+                        <div className="container" onTouchEnd={this.toggleMenu}>
                             <div className="header-bar-wrap">
                                 <div className="header-options">
-                                    <div className="header-panel-wrap" onTouchEnd={this.toggleMenu}>
+                                    <div className="header-panel-wrap">
                                         <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
                                             <span
                                                 className="text-link">Meny</span>
