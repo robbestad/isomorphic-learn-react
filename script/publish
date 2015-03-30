@@ -4,8 +4,8 @@ version=`npm version patch`
 
 BIN=./node_modules/.bin
 npm run styles
-#NODE_ENV=production $BIN/webpack -p
-#$BIN/uglifyjs app/js/main.js  --mangle --compress warnings=false > app/js/min.js
-#mv app/js/min.js app/js/main.js
+NODE_ENV=production $BIN/webpack -p
+$BIN/uglifyjs app/js/main.js  --mangle --compress warnings=false > app/js/min.js
+mv app/js/min.js app/js/main.js
 git commit -am"$version" --allow-empty
 git push heroku master
