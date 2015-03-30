@@ -1438,7 +1438,11 @@ a:link strong{
 }
 
 .columnBox{
-  margin: 20px 0 15px 0;
+  //margin: 20px 0 15px 0;
+  overflow: hidden;
+}
+.col-md-12, .col-md-6, .col-xs-12{
+  padding:0;
 }
 
 span, div {

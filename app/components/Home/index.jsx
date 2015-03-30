@@ -32,7 +32,8 @@ const React = require("react"),
             <Row className="show-grid" >
 
 
-                <Col md={12} className="columnBox">
+                <Col md={12}>
+                    <p className="columnBox">
                     <strong>Learn React</strong>
                 &nbsp; is a collection of React examples,
                     modules and tutorials. More will be coming
@@ -40,18 +41,20 @@ const React = require("react"),
                     on&nbsp;
                     <a href="https://github.com/svenanders/learn-react">github</a>
                     .
+                    </p>
                 </Col>
             </Row>
             <Row className="show-grid">
                 <Col md={12}>
-                    <h2>Components</h2>
+                    <h2 className="columnBox">Components</h2>
                 </Col>
             </Row>
 
 
             <Row>
 
-                <Col xs={12} md={6} className="columnBox">
+                <Col xs={12} md={6} >
+                    <p className="columnBox">
 
                     <Link to={LoginRoute.name}>
                         <strong>
@@ -71,11 +74,13 @@ const React = require("react"),
                     <span className="label blue">McFly</span>
                     &nbsp;
                     <span className="label blue">Oauth</span>
+                    </p>
 
 
                 </Col>
 
                 <Col xs={12} md={6} className="columnBox">
+                    <p className="columnBox">
                     <Link to={McFlyRoute.name}>
                         <strong>
                             McFly example
@@ -93,6 +98,7 @@ const React = require("react"),
                     <span className="label blue">Flux</span>
                 &nbsp;
                     <span className="label blue">JSON</span>
+                </p>
 
                 </Col>
             </Row>
