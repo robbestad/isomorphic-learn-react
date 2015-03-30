@@ -208,17 +208,18 @@ var Root = module.exports = React.createClass({
                         <header className="page-header">
                             <div id="header" className="header-bar">
                                 <div ref="feedbackModal" id="feedback-modal"></div>
-                                <Hammer className="container" onTap={this.toggleMenu}>
+                                <div className="container" >
                                     <div className="header-bar-wrap">
                                         <div className="header-options">
-                                            <div className="header-panel-wrap"
+                                            <Hammer className="header-panel-wrap"
+                                                onTap={this.toggleMenu}
                                                  onClick={this.toggleMenu}
                                                  onTouchEnd={this.toggleMenu}>
                                         <span ref="menuLink" className="menu-link header-panel-element header-panel-link">
                                             <span
                                                 className="text-link">Meny</span>
                                         </span>
-                                            </div>
+                                            </Hammer>
                                         </div>
 
                                         <div className="logo-wrap logo">
@@ -257,7 +258,7 @@ var Root = module.exports = React.createClass({
 
 
                                     </div>
-                                </Hammer>
+                                </div>
                             </div>
                         </header>
                     </Headroom>
