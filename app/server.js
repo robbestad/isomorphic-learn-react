@@ -3,21 +3,15 @@ var fs = require('fs');
 var React = require('react');
 var ReactAsync = require('react-async');
 var Router = require('react-router');
-var uuid = require('uuid');
-var cache = require('./utils/cache');
+//var uuid = require('uuid');
+//var cache = require('./utils/cache');
 var getRoutes = require('./routes.js');
-var fetchData = require('./utils/fetchData');
+//var fetchData = require('./utils/fetchData');
 var indexHTML = fs.readFileSync(__dirname+'/index.html').toString();
-//var mainJS = fs.readFileSync(__dirname+'/../public/js/main.js');
-//var critical_css = fs.readFileSync(__dirname+'/assets/main.css');
-//var main_css = fs.readFileSync(__dirname+'/assets/site.css');
 var write = require('./utils/write');
 var Cookies = require('cookies');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
-//var Cacher = require("cacher")
-// use the default in memory cache
-//var cacher = new Cacher();
 
 // gzip/deflate outgoing responses
 var compression = require('compression');
@@ -60,14 +54,23 @@ var renderApp = (req, token, cb) => {
       cb({notFound: true}, html);
       return;
     }
-    fetchData(token, state).then((data) => {
-      var clientHandoff = { token, data: cache.clean(token) };
-      var html = React.renderToString(<Handler data={data} />);
-      var output = indexHTML.
-         replace(htmlRegex, html).
-         replace(dataRegex, JSON.stringify(clientHandoff));
-      cb(null, output, token);
-    });
+    var token='', data={};
+    var clientHandoff = { token, data: '' };
+    var html = React.renderToString(<Handler data={data} />);
+    var output = indexHTML.
+        replace(htmlRegex, html).
+        replace(dataRegex, JSON.stringify(clientHandoff));
+    cb(null, output, token);
+    //
+    //fetchData(token, state).then((data) => {
+    //  //var clientHandoff = { token, data: cache.clean(token) };
+    //  var clientHandoff = { token, data: '' };
+    //  var html = React.renderToString(<Handler data={data} />);
+    //  var output = indexHTML.
+    //     replace(htmlRegex, html).
+    //     replace(dataRegex, JSON.stringify(clientHandoff));
+    //  cb(null, output, token);
+    //});
   });
 };
 

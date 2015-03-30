@@ -1,7 +1,7 @@
 var React = require('react');
 var { Link, RouteHandler } = require('react-router');
 var TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
-var api = require('../utils/api');
+//var api = require('../utils/api');
 var twitter = "http://twitter.com/ryanflorence";
 var rr = "https://github.com/rackt/react-router";
 var source = "https://github.com/rackt/react-router-mega-demo";
@@ -51,12 +51,6 @@ let eventIds = [];
 
 var Root = module.exports = React.createClass({
     mixins: [LoginStore.mixin],
-
-    statics: {
-        fetchData: (token, params, query) => {
-            return api.get('/contacts', token);
-        }
-    },
 
     getInitialState() {
         return {

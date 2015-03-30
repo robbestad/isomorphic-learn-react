@@ -1,18 +1,10 @@
 var React = require('react');
 var { Link, RouteHandler } = require('react-router');
 var TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
-var api = require('../utils/api');
+//var api = require('../utils/api');
 var twitter = "http://twitter.com/ryanflorence";
 var rr = "https://github.com/rackt/react-router";
 var source = "https://github.com/rackt/react-router-mega-demo";
-
-var sortContacts = (contacts) => {
-  return contacts.slice(0).sort((a, b) => {
-    a = (a.first+' '+a.last).toLowerCase();
-    b = (b.first+' '+b.last).toLowerCase();
-    return a > b ? 1 : a < b ? -1 : 0;
-  });
-};
 
 var Root = module.exports = React.createClass({
 
