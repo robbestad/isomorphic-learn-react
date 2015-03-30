@@ -14,19 +14,24 @@ var indexHTML = fs.readFileSync(__dirname+'/index.html').toString();
 var write = require('./utils/write');
 var Cookies = require('cookies');
 var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 
 // gzip/deflate outgoing responses
 var compression = require('compression');
-var app = express();//.use(gzippo.compress());
+var app = express();
 
-//// Body-parsing middleware
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
 app.use(compression());
 
 var oneYear = 31557600000;
 app.use(express.static(__dirname + '/assets', { maxAge: oneYear }));
+app.use(express.static(__dirname + '/js', { maxAge: oneYear }));
 
+//favicon
+app.use(favicon(__dirname + '/assets/favicon.ico'));
+
+//// Body-parsing middleware
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 var renderApp = (req, token, cb) => {
   var path = req.url;
