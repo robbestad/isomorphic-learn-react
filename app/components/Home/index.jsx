@@ -3,11 +3,7 @@
 const React = require("react"),
     { Grid, Col, Row} = require('react-bootstrap'),
     {Link} = require('react-router'),
-    {McFlyRoute, LoginRoute, ArticlesRoute} = require('../routes.jsx'),
-/*    {ReactFireRoute, McFlyRoute, ButtonRoute, StaticsRoute, StickyRoute,
-        LoginRoute, MarkdownRoute, RefluxRoute, FormsRoute,
-        ChartsRoute, AnimationsRoute, BreadcrumbsRoute, ComponentRoute} = require('../routes.jsx'),
-*/
+    //{McFlyRoute, LoginRoute, ArticlesRoute} = require('../routes.jsx'),
     ApiStore = require("../Mcfly/store"),
     RefluxStore = require("../Reflux/store"),
     //Rx = require('rx'),
@@ -52,74 +48,8 @@ const React = require("react"),
 
             <Row>
 
-                <Col xs={12} md={6} >
-                    <p className="columnBox">
+               
 
-                    <Link to={LoginRoute.name}>
-                        <strong>
-                            Login example
-                        </strong>
-                    </Link>
-                    <br/>
-                    Demonstrates a login component that passes credentials to a third party API and
-                    authenticates with Oauth2.
-                    <br/>
-
-                    <em>Current login status: {LoginStore.isAuthenticated().toString()}</em>
-
-                    <br/>
-                    <span className="label blue">Login</span>
-                    &nbsp;
-                    <span className="label blue">McFly</span>
-                    &nbsp;
-                    <span className="label blue">Oauth</span>
-                    </p>
-
-
-                </Col>
-
-                <Col xs={12} md={6} className="columnBox">
-                    <p className="columnBox">
-                    <Link to={McFlyRoute.name}>
-                        <strong>
-                            McFly example
-                        </strong>
-                    </Link>
-                    <br/>
-                    This component uses McFly to populate a datastore with a JSON resource using AJAX.
-                    <br/>
-                    The McFly store currently holds&nbsp;
-                    <strong>{ApiStore.getPosts().length}</strong>
-                &nbsp;objects
-                    <br/>
-                    <span className="label blue">McFly</span>
-                &nbsp;
-                    <span className="label blue">Flux</span>
-                &nbsp;
-                    <span className="label blue">JSON</span>
-                </p>
-
-                </Col>
-
-
-
-                <Col xs={12} md={6} className="columnBox">
-                    <p className="columnBox">
-                        <Link to={ArticlesRoute.name}>
-                            <strong>
-                                Articles
-                            </strong>
-                        </Link>
-                        <br/>
-                        This component utilizes breadcrumbs in a big way
-                        <br/>
-
-                        <span className="label blue">breadcrumbs</span>
-                        &nbsp;
-                        <span className="label blue">JSON</span>
-                    </p>
-
-                </Col>
             </Row>
         </Grid>
     }
